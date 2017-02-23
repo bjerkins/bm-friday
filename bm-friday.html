@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`bm-friday`
+Is it Friday ?
+
+@demo demo/index.html 
+-->
+
+<dom-module id="bm-friday">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'bm-friday',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'bm-friday',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
