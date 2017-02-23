@@ -95,7 +95,14 @@
             });
 
             isFridayEl.addEventListener('bm-friday-is-friday', function () {
-                var player = createPlayer();
+                var player = document.querySelector('google-youtube');
+
+                // check if we already have player
+                if (player) {
+                    return;
+                }
+
+                player = createPlayer();
                 backgroundEl.appendChild(player);
                 body.setAttribute('is-friday', true);
             });
