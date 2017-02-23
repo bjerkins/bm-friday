@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -13,16 +14,23 @@
     <link rel="import" href="../bm-friday.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
+
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="vertical-section-container centered">
-      <h3>Basic bm-friday demo</h3>
-      <demo-snippet>
-        <template>
-          <bm-friday></bm-friday>
-        </template>
-      </demo-snippet>
+        <h3>Basic bm-friday demo</h3>
+        <demo-snippet>
+            <template>
+                <bm-friday is-friday="{{ isFriday }}">
+                    <div class="heading">ER DET FREDAG ?</div>
+                    <h1 hidden$="[[ isFriday ]]">NEJ :(</h1>
+                    <h1 hidden$="[[ !isFriday ]]">JA! NEJS MAND</h1>
+                </bm-friday>
+            </template>
+        </demo-snippet>
     </div>
-  </body>
+</body>
+
 </html>
