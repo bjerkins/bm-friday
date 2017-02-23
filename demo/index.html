@@ -23,11 +23,13 @@
         <h3>Basic bm-friday demo</h3>
         <demo-snippet>
             <template>
-                <bm-friday is-friday="{{ isFriday }}">
-                    <div class="heading">ER DET FREDAG ?</div>
-                    <h1 hidden$="[[ isFriday ]]">NEJ :(</h1>
-                    <h1 hidden$="[[ !isFriday ]]">JA! NEJS MAND</h1>
-                </bm-friday>
+                <template is="dom-bind">
+                    <bm-friday is-friday="{{ isFriday }}">
+                        <div class="heading">ER DET FREDAG ?</div>
+                        <h1 hidden$="[[ isFriday ]]">NEJ :(</h1>
+                        <h1 hidden$="[[ !isFriday ]]">JA! NEJS MAND</h1>
+                    </bm-friday>
+                <template>
             </template>
         </demo-snippet>
     </div>

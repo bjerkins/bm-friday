@@ -4,10 +4,11 @@
 # element project
 if [ -d "tools" ]
 then
-    rm -rf tools
+    echo "I have the tools already"
+else
+    git clone git://github.com/Polymer/tools.git
 fi
 
-git clone git://github.com/Polymer/tools.git
 
 # Create a temporary directory for publishing your element and cd into it
 if [ -d "temp" ]
