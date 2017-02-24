@@ -1,18 +1,24 @@
 # \<bm-friday\>
 
-Is it Friday ?
+> Is it Friday yet ?
 
-## Install the Polymer-CLI
+A custom web component that will tell you whether or not it is Friday.
+
+Check out the [demo](https://bjerkins.github.io/bm-friday/components/bm-friday/demo/)
+
+## Developing
+
+### Install the Polymer-CLI
 
 First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
 
-## Viewing Your Application
+### Serving
 
 ```
 $ polymer serve
 ```
 
-## Building Your Application
+### Building it
 
 ```
 $ polymer build
@@ -29,10 +35,10 @@ from:
 $ polymer serve build/bundled
 ```
 
-## Running Tests
+### Running Tests
 
 ```
-$ polymer test
+$ polymer serve
 ```
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+and navigate to `test/`
