@@ -1,6 +1,10 @@
 {
   "name": "bm-friday",
+  "version": "1.0.0",
   "description": "Is it Friday ?",
+  "keywords": [
+      "web-components"
+  ],
   "main": "bm-friday.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
