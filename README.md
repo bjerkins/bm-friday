@@ -1,3 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/bjerkins/bm-friday)
+
 # \<bm-friday\>
 
 > Is it Friday yet ?
@@ -5,6 +7,7 @@
 A custom web component that will tell you whether or not it is Friday.
 
 Check out the [demo](https://bjerkins.github.io/bm-friday/components/bm-friday/demo/)
+and [API docs](https://bjerkins.github.io/bm-friday/components/bm-friday)
 
 ## Developing
 
