@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>bm-friday tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <script src="../../webcomponentsjs/webcomponents.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+    <!-- load fixtures -->
+    <!-- <link rel="import" href="fixtures/x-fixture.html"> -->
+
+    <!-- load our test subject -->
+    <link rel="import" href="../bm-friday.html">
+</head>
+
+<body>
+
+    <test-fixture id="basic">
+        <template>
+            <bm-friday></bm-friday>
+        </template>
+    </test-fixture>
+
+    <script>
+        describe('basic', function () {
+
+            var el;
+
+            beforeEach(function () {
+                el = fixture('basic');
+            });
+
+            context('defined properties', function () {
+
+                it('should have correct properties defined', function () {
+                    expect(el).have.property('isFriday');
+                });
+
+            });
+
+            context('#_setIsFriday', function () {
+
+                it('should compute `isFriday`', function () {
+                    var mockDate = {
+                        getDay: function () { return 5; }
+                    };
+
+                    el._checkIsFriday(mockDate);
+
+                    expect(el.isFriday).to.be.true;
+                });
+
+                it('should fire event when it is friday', function () {
+
+                    var isFridayCallback = sinon.spy();
+
+                    var mockDate = {
+                        getDay: function () { return 5; }
+                    };
+
+                    el.addEventListener('bm-friday-is-friday', isFridayCallback);
+                    el._checkIsFriday(mockDate);
+
+                    expect(isFridayCallback).to.have.been.calledOnce;
+                });
+
+                it('should fire event when it is not friday', function () {
+
+                    var isOtherDayCallback = sinon.spy();
+
+                    var mockDate = {
+                        getDay: function () { return 4; }
+                    };
+
+                    el.addEventListener('bm-friday-other-day', isOtherDayCallback);
+                    el._checkIsFriday(mockDate);
+
+                    expect(isOtherDayCallback).to.have.been.calledOnce;
+                });
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>

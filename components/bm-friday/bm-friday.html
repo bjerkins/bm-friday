@@ -1,0 +1,90 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+
+Use `<bm-friday>` to get informed whether or not today is a Friday.
+
+## Example
+
+```html
+    <bm-friday is-friday="{{ isFriday }}">
+        <div class="heading">IS IT FRIDAY ?</div>
+        <h1 hidden$="[[ isFriday ]]">NO :(</h1>
+        <h1 hidden$="[[ !isFriday ]]">YES!</h1>
+    </bm-friday>
+```
+
+This component checks if it's Friday _every minute_, and fires `bm-friday-is-friday` event when
+today is Friday, and `bm-friday-other-day` on any other days.
+
+@event bm-friday-is-friday
+@event bm-friday-other-day
+@element bm-friday
+@demo demo/index.html
+-->
+<dom-module id="bm-friday">
+    <template>
+        <style>
+            :host {
+                display: block;
+                position: relative;
+            }
+        </style>
+
+        <content>IS IT FRIDAY?</content>
+
+    </template>
+    <script>
+        (function() {
+            'use strict';
+
+            Polymer({
+                is: 'bm-friday',
+
+                properties: {
+
+                    /**
+                     * True if today is Friday, false otherwise.
+                     * @type {Boolean}
+                     */
+                    isFriday: {
+                        type: Boolean,
+                        notify: true
+                    },
+
+                    _interval: {
+                        type: Number,
+                        value: 60 * 1000
+                    },
+
+                    _dayOfFriday: {
+                        type: Number,
+                        value: 5
+                    }
+
+                },
+
+                attached: function () {
+                    setInterval(function () {
+                        this._checkIsFriday(new Date());
+                    }.bind(this), this._interval);
+
+                    this._checkIsFriday(new Date());
+                },
+
+                _checkIsFriday: function (date) {
+                    this.isFriday = date.getDay() === this._dayOfFriday;
+
+                    if (this.isFriday) {
+                        this.fire('bm-friday-is-friday');
+                    } else {
+                        this.fire('bm-friday-other-day');
+                    }
+                }
+            });
+        })();
+
+    </script>
+
+
+</dom-module>

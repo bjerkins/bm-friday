@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>bm-friday demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../google-youtube/google-youtube.html">
+    <link rel="import" href="../bm-friday.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+
+        .background {
+            display: none;
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        body[is-friday] .background {
+            display: flex;
+        }
+
+        demo-snippet {
+            margin-bottom: 0px;
+        }
+
+        body[is-friday] demo-snippet {
+            box-shadow:
+                rgba(83, 154, 152, 0.2) 0px 2px 2px,
+                rgba(83, 154, 152, 0.2) 0px 4px 4px,
+                rgba(83, 154, 152, 0.2) 0px 8px 8px,
+                rgba(83, 154, 152, 0.2) 0px 16px 16px,
+                rgba(83, 154, 152, 0.2) 0px 32px 32px,
+                rgba(83, 154, 152, 0.2) 0px 64px 64px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+    </div>
+
+    <div class="vertical-section-container centered">
+
+        <demo-snippet>
+            <template is="dom-bind">
+
+                <bm-friday id="isFriday" is-friday="{{ isFriday }}">
+                    <div class="heading">IS IT FRIDAY ?</div>
+                    <h1 hidden$="[[ isFriday ]]">NOPES :(</h1>
+                    <h1 hidden$="[[ !isFriday ]]">YES! LET'S DANCE</h1>
+                </bm-friday>
+
+            </template>
+        </demo-snippet>
+
+    </div>
+
+    <script>
+
+        var scope = document.querySelector('template[is="dom-bind"]');
+        var backgroundEl = document.querySelector('.background');
+        var body = document.body;
+
+        function createPlayer() {
+            var player = document.createElement('google-youtube');
+
+            player.setAttribute('autoplay', 1);
+            player.setAttribute('chromeless', true);
+            player.setAttribute('fluid', true);
+            player.setAttribute('video-id', 'bVToF1gHapc');
+
+            return player;
+        }
+
+        scope.addEventListener('dom-change', function () {
+
+            var isFridayEl = scope.$.isFriday;
+
+            isFridayEl.addEventListener('bm-friday-other-day', function () {
+                body.removeAttribute('is-friday');
+                backgroundEl.innerHTML = '';
+            });
+
+            isFridayEl.addEventListener('bm-friday-is-friday', function () {
+                var player = backgroundEl.querySelector('google-youtube');
+
+                // check if we already have player
+                if (player) {
+                    return;
+                }
+
+                player = createPlayer();
+                backgroundEl.appendChild(player);
+                body.setAttribute('is-friday', true);
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>
