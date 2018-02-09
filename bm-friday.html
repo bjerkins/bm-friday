@@ -65,7 +65,7 @@ today is Friday, and `bm-friday-other-day` on any other days.
                 },
 
                 attached: function () {
-                    setInterval(function () {
+                    this._interval = setInterval(function () {
                         this._checkIsFriday(new Date());
                     }.bind(this), this._interval);
 
@@ -80,6 +80,10 @@ today is Friday, and `bm-friday-other-day` on any other days.
                     } else {
                         this.fire('bm-friday-other-day');
                     }
+                },
+                
+                detached: function () {
+                    window.clearInterval(this._interval);
                 }
             });
         })();
